@@ -11,22 +11,24 @@ void times_table(void)
 
 	for (x = 0; x <= 9; x++)
 	{
-		for (y = 0; y <=9; y++)
+		for (y = 0; y <= 9; y++)
 		{
+			n = x * y;
 			if (y == 0)
 			{
 				_putchar(48);
 				continue;
 			}
-			n = x * y;
-			_putchar(',');
-			_putchar(' ');
-			if (n < 10)
+			else if (n < 10)
 			{
+				_putchar(',');
+				_putchar(' ');
 				_putchar(' ');
 				_putchar(n + 48);
 			} else if (n > 9)
 			{
+				_putchar(',');
+				_putchar(' ');
 				_putchar(n / 10 + 48);
 				_putchar(n % 10 + 48);
 			}
