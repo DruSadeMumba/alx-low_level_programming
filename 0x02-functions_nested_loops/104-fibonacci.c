@@ -1,14 +1,14 @@
 #include <stdio.h>
 
 /**
- * main - entry
+ * num - entry
  *
- * Description:
+ * Description: length
  * @n: integer
  *
  * Return: 0
  */
-int main(int n)
+int num(int n)
 {
 	int l = 0;
 
@@ -24,11 +24,11 @@ int main(int n)
 	return (l);
 }
 /**
- * main2 - next function
+ * main - next function
  *
  * Return: 0
  */
-int main2(void)
+int main(void)
 {
 	unsigned long x = 1, y = 2, z, mx = 100000000, xo = 0, yo = 0, zo = 0;
 	short int i = 1, j;
@@ -39,7 +39,7 @@ int main2(void)
 		{
 			printf("%lu", xo);
 		}
-		j = main(mx) - 1 - main(x);
+		j = num(mx) - 1 - num(x);
 		while (xo > 0 && j > 0)
 		{
 			printf("%i", 0);
