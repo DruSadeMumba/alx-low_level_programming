@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 /**
- * main: entry
+ * main - entry point
  *
- * Description: Print largest prime number
+ * Description: Print largest prime factor
  *
  * Return: 0
  */
