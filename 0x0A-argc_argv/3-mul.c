@@ -13,6 +13,7 @@ int string_to_int(char str[])
 
 	num = 0;
 	l = strlen(str);
+
 	for (i = 0; i < l; i++)
 	{
 		if (str[i] >= 48 && str[i] <= 57)
@@ -33,9 +34,11 @@ int string_to_int(char str[])
  */
 int main(int argc, char *argv[])
 {
-	int mul, x, y;
+	int x, y, mul;
 
-	if (argc == 3)
+	mul = 0;
+
+	if (argc > 2)
 	{
 		x = string_to_int(argv[1]);
 		y = string_to_int(argv[2]);
