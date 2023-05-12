@@ -40,8 +40,8 @@ int main(int argc, char *argv[])
 
 	if (argc > 2)
 	{
-		x = string_to_int(argv[1]);
-		y = string_to_int(argv[2]);
+		x = atoi(argv[1]);
+		y = atoi(argv[2]);
 
 		mul = x * y;
 		printf("%d\n", mul);
