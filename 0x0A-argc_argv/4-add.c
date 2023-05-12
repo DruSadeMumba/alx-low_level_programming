@@ -35,27 +35,29 @@ int string_to_int(char str[])
 int main(int argc, char *argv[])
 {
 	int i, x, sum;
+	char *q;
 
 	sum = 0;
 	if (argc > 2)
 	{
 		for (i = 1; i < argc; i++)
 		{
-			x = string_to_int(argv[i]);
-			if (x >= 0 && isdigit(x))
+			x = strtol(argv[i], &q, 10);
+			if (!(*q))
 			{
 				sum += x;
-			} else if (!isdigit(x))
+			} else
 			{
 				printf("Error\n");
 				return (1);
 			}
-			break;
 		}
-		printf("%d\n", sum);
 	} else if (argc < 3)
 	{
 		printf("0\n");
+		return (0);
 	}
-	return (sum);
+
+	printf("%d\n", sum);
+	return (0);
 }
