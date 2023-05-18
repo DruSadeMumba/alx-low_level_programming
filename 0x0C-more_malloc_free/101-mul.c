@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		return (1);
 	for (i = 0; i <= len1 + len2; i++)
 		ans[i] = 0;
-	for (len1 = len1 - 1; len1 >= 0; len1--)
+	for (len1 = strlen(s1) - 1; len1 >= 0; len1--)
 	{
 		x = s1[len1] - '0';
 		c = 0;
