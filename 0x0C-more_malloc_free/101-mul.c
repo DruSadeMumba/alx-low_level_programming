@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	{
 		x = s1[len1] - '0';
 		c = 0;
-		for (len2 = len2 - 1; len2 >= 0; len2--)
+		for (len2 = strlen(s2) - 1; len2 >= 0; len2--)
 		{
 			y = s2[len2] - '0';
 			c += ans[len1 + len2 + 1] + (x * y);
