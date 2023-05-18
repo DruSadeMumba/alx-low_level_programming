@@ -20,14 +20,14 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		for (i = 0; s1[i] != '\0'; i++)
 			len1++;
 	} else
-		return ("");
+		len1 = 0;
 
 	if (s2 != NULL)
 	{
 		for (i = 0; s2[i] != '\0'; i++)
 			len2++;
 	} else
-		return ("");
+		len2 = 0;
 
 	if (len2 > n)
 		len2 = n;
