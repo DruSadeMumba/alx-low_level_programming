@@ -21,13 +21,13 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 		{
 			if (i < n - 1)
 				printf("%d%c ", x, *separator);
-			else
+			else if (i == 0 || i == n - 1)
 				printf("%d", x);
 		} else
 		{
 			if (i < n - 1)
 				printf("%d ", x);
-			else
+			else if (i == 0 || i == n - 1)
 				printf("%d", x);
 		}
 	}
