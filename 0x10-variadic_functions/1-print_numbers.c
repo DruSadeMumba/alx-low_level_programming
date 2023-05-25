@@ -21,7 +21,7 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 		x = va_arg(args, int);
 		printf("%d", x);
 		if (i < n - 1)
-			printf("%c ", *separator);
+			printf("%c", *separator);
 	}
 	printf("\n");
 	va_end(args);
