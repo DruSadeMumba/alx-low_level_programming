@@ -6,11 +6,10 @@
  * @separator: string
  * @n: number of args
  */
-void print_numbers(const char *separator, const unsigned int n, ...);
-int x;
-unsigned int i;
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
+	int x;
+	unsigned int i;
 	va_list args;
 
 	va_start(args, n);
