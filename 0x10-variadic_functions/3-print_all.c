@@ -7,12 +7,11 @@
  */
 void print_all(const char * const format, ...)
 {
-	int i;
+	int i = 0;
 	va_list args;
 	char *s, *separator = "";
 
 	va_start(args, format);
-	i = 0;
 	if (format)
 	{
 		while (format[i])
@@ -30,7 +29,7 @@ void print_all(const char * const format, ...)
 					break;
 				case 's':
 					s = va_arg(args, char *);
-					if (!*s)
+					if (!s)
 						s = "(nil)";
 					printf("%s%s", separator, s);
 					break;
