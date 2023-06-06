@@ -38,7 +38,7 @@ size_t print_listint_safe(const listint_t *head)
 	const listint_t **list = NULL;
 	size_t size = 0, i;
 
-	while (head)
+	while (head != NULL)
 	{
 		for (i = 0; i < size; i++)
 		{
