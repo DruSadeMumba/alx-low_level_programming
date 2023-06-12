@@ -76,8 +76,7 @@ int main(int argc, char *argv[])
 
 	buffer = buffering(argv[2]);
 	file_from = open(argv[1], O_RDONLY);
-	while (0 > (file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, mode)))
-		return (perror("open"), 1);
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
 	reed = read(file_from, buffer, 1024);
 
 	while (rite > 0)
