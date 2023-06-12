@@ -17,23 +17,15 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 
 	buffer = malloc(sizeof(char) * letters);
-	if (!buffer)
-		return (0);
-
 	fc = open(filename, 0);
-	if (!fc)
+
+	if (!buffer || !fc)
 		return (0);
 
 	reed = read(fc, buffer, letters);
-	if (reed == -1)
-	{
-		free(buffer);
-		close(fc);
-		return (0);
-	}
-
 	rite = write(STDOUT_FILENO, buffer, reed);
-	if (rite == -1)
+
+	if (rite == -1 || reed == -1)
 	{
 		free(buffer);
 		close(fc);
