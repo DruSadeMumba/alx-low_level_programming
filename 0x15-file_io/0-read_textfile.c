@@ -2,10 +2,10 @@
 
 /**
  * read_textfile - read fiile
- * @filename - file pointer
- * @letters - num of elements
+ * @filename: file pointer
+ * @letters: num of elements
  *
- * Return - num of elements
+ * Return: num of elements
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
@@ -18,14 +18,14 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	buffer = malloc(sizeof(char) * letters);
 	if (!buffer)
-		return(0);
+		return (0);
 
 	fc = open(filename, 0);
 	if (!fc)
 		return (0);
 
 	reed = read(fc, buffer, letters);
-	if (!reed)
+	if (reed == -1)
 	{
 		free(buffer);
 		close(fc);
@@ -33,7 +33,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	}
 
 	rite = write(STDOUT_FILENO, buffer, reed);
-	if (!rite)
+	if (rite == -1)
 	{
 		free(buffer);
 		close(fc);
