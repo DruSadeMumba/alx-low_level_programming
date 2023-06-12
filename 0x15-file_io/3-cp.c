@@ -67,14 +67,17 @@ int main(int argc, char *argv[])
 {
 	int file_from, file_to, reed, rite;
 	char *buffer;
-	mode_t mode = 0664;
+	mode_t mode = umask(0);
+
+	mode = 0664;
 
 	if (argc != 3)
 		_errors(97, NULL, 0);
 
 	buffer = buffering(argv[2]);
 	file_from = open(argv[1], O_RDONLY);
-	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
+	while (0 > (file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, mode)))
+		return (perror("open"), 1);
 	reed = read(file_from, buffer, 1024);
 
 	while (rite > 0)
