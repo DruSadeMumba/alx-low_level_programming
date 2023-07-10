@@ -75,32 +75,32 @@ int main(int argc, char *argv[])
 	mode = 0664;
 
 	if (argc != 3)
-		_errors(97, NULL, 0);
-
+	{
+		fprintf(stderr, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
 	buffer = buffering(argv[2]);
 	file_from = open(argv[1], O_RDONLY);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
 	reed = read(file_from, buffer, 1024);
-
 	while (rite > 0)
 	{
 		if (file_from == -1 || reed == -1)
 		{
+			fprintf(stderr, "Error: Can't read from file %s\n", argv[1]);
 			free(buffer);
-			_errors(98, argv[1], 0);
+			exit(98);
 		}
-
 		rite = write(file_to, buffer, reed);
 		if (file_to == -1 || rite == -1)
 		{
+			fprintf(stderr, "Error: Can't write to %s\n", argv[2]);
 			free(buffer);
-			_errors(99, argv[2], 0);
+			exit(99);
 		}
-
 		reed = read(file_from, buffer, 1024);
 		file_to = open(argv[2], O_WRONLY | O_APPEND);
 	}
-
 	free(buffer);
 	close_file(file_from);
 	close_file(file_to);
