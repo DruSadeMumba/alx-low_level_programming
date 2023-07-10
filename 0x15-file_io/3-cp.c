@@ -15,13 +15,13 @@ int _errors(int error, char *s, int fd)
 			fprintf(stderr, "Usage: cp file_from file_to\n");
 			exit(error);
 		case 98:
-			fprintf(stderr, "Error: Can't read from file NAME_OF_THE_FILE %s\n", s);
+			fprintf(stderr, "Error: Can't read from file %s\n", s);
 			exit(error);
 		case 99:
-			fprintf(stderr, "Error: Can't write to NAME_OF_THE_FILE %s\n", s);
+			fprintf(stderr, "Error: Can't write to %s\n", s);
 			exit(error);
 		case 100:
-			fprintf(stderr, "Error: Can't close fd FD_VALUE %d\n", fd);
+			fprintf(stderr, "Error: Can't close fd %d\n", fd);
 			exit(error);
 		default:
 			return (0);
