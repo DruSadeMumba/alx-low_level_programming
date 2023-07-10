@@ -39,7 +39,7 @@ char *buffering(char *file)
 
 	buffer = malloc(sizeof(char) * 1024);
 	if (!buffer)
-		_errors(98, file, 0);
+		_errors(100, file, 0);
 	return (buffer);
 }
 
