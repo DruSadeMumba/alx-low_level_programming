@@ -57,7 +57,10 @@ void close_file(int fc)
 
 	c = close(fc);
 	if (c == -1)
-		_errors(100, NULL, fc);
+	{
+		fprintf(stderr, "Error: Can't close fd %d\n", fc);
+		exit(100);
+	}
 }
 
 /**
