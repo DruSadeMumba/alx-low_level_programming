@@ -1,7 +1,7 @@
 #include "hash_tables.h"
 
 /**
- * sshash_table_create - create sorted shash table
+ * shash_table_create - create sorted shash table
  * @size: array size
  * Return: pointer
  */
@@ -32,7 +32,7 @@ shash_table_t *shash_table_create(unsigned long int size)
  * @value: value
  * Return: 1 or 0
  */
-int sshash_table_set(shash_table_t *sht, const char *key, const char *value)
+int shash_table_set(shash_table_t *sht, const char *key, const char *value)
 {
 	shash_node_t *new;
 	char *copy = strdup(value);
@@ -122,7 +122,29 @@ void shash_table_print(const shash_table_t *sht)
 }
 
 /**
- * shash_table_delete
+ * shash_table_print_rev - print in reverse order
+ * @sht: pointer
+ */
+void shash_table_print_rev(const shash_table_t *sht)
+{
+	shash_node_t *new;
+	char *comma = "";
+
+	if (!sht)
+		return;
+	new = sht->stail;
+	printf("{");
+	while (new)
+	{
+		printf("%s'%s': '%s'", comma, new->key, new->value);
+		comma = ", ";
+		new = new->sprev;
+	}
+	printf("}\n");
+}
+
+/**
+ * shash_table_delete - delete
  * @sht: pointer
  */
 void shash_table_delete(shash_table_t *sht)
