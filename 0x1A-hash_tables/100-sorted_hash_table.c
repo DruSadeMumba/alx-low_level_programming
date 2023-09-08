@@ -1,7 +1,7 @@
 #include "hash_tables.h"
 
 /**
- * shash_table_create - create sorted hash table
+ * sshash_table_create - create sorted shash table
  * @size: array size
  * Return: pointer
  */
@@ -24,34 +24,33 @@ shash_table_t *shash_table_create(unsigned long int size)
 
 	return (sht);
 }
-#include "hash_tables.h"
 
 /**
- * hash_table_set - add element
- * @ht: pointer
+ * shash_table_set - add element
+ * @sht: pointer
  * @key: key
  * @value: value
  * Return: 1 or 0
  */
-int hash_table_set(hash_table_t *ht, const char *key, const char *value)
+int sshash_table_set(shash_table_t *sht, const char *key, const char *value)
 {
-	hash_node_t *new;
+	shash_node_t *new;
 	char *copy = strdup(value);
 	unsigned long n, i;
 
-	if (!ht || !key || !value || !copy)
+	if (!sht || !key || !value || !copy)
 		return (0);
 
-	n = key_index((const unsigned char *)key, ht->size);
-	for (i = n; ht->array[i]; i++)
-		if (strcmp(ht->array[i]->key, key) == 0)
+	n = key_index((const unsigned char *)key, sht->size);
+	for (i = n; sht->array[i]; i++)
+		if (strcmp(sht->array[i]->key, key) == 0)
 		{
-			free(ht->array[i]->value);
-			ht->array[i]->value = copy;
+			free(sht->array[i]->value);
+			sht->array[i]->value = copy;
 			return (1);
 		}
 
-	new = malloc(sizeof(hash_node_t));
+	new = malloc(sizeof(shash_node_t));
 	if (!new)
 	{
 		free(copy);
@@ -65,29 +64,28 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	}
 	new->value = copy;
-	new->next = ht->array[n];
-	ht->array[n] = new;
+	new->next = sht->array[n];
+	sht->array[n] = new;
 
 	return (1);
 }
-#include "hash_tables.h"
 
 /**
- * hash_table_get - retrieve value
- * @ht: pointer
+ * shash_table_get - retrieve value
+ * @sht: pointer
  * @key: key
  * Return: value
  */
-char *hash_table_get(const hash_table_t *ht, const char *key)
+char *shash_table_get(const shash_table_t *sht, const char *key)
 {
 	unsigned long n;
-	hash_node_t *new;
+	shash_node_t *new;
 
-	if (!ht || !key)
+	if (!sht || !key)
 		return (NULL);
-	n = key_index((const unsigned char *)key, ht->size);
+	n = key_index((const unsigned char *)key, sht->size);
 
-	new = (ht->array)[n];
+	new = (sht->array)[n];
 	while (new && strcmp(new->key, key) != 0)
 		new = new->next;
 	if (!new)
@@ -95,24 +93,23 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	else
 		return (new->value);
 }
-#include "hash_tables.h"
 
 /**
- * hash_table_print - prints a hash table
- * @ht: pointer
+ * shash_table_print - prints a shash table
+ * @sht: pointer
  */
-void hash_table_print(const hash_table_t *ht)
+void shash_table_print(const shash_table_t *sht)
 {
 	unsigned long n = 0;
-	hash_node_t *new;
+	shash_node_t *new;
 	char *comma = "";
 
-	if (!ht || !ht->array)
+	if (!sht || !sht->array)
 		return;
 	printf("{");
-	while (n < ht->size)
+	while (n < sht->size)
 	{
-		new = ((ht->array)[n]);
+		new = ((sht->array)[n]);
 		while (new)
 		{
 			printf("%s'%s': '%s'", comma, new->key, new->value);
@@ -123,20 +120,19 @@ void hash_table_print(const hash_table_t *ht)
 	}
 	printf("}\n");
 }
-#include "hash_tables.h"
 
 /**
- * hash_table_delete
- * @ht: pointer
+ * shash_table_delete
+ * @sht: pointer
  */
-void hash_table_delete(hash_table_t *ht)
+void shash_table_delete(shash_table_t *sht)
 {
 	unsigned long int i = 0;
-	hash_node_t *new, *next;
+	shash_node_t *new, *next;
 
-	while (i < ht->size)
+	while (i < sht->size)
 	{
-		new = (ht->array)[i];
+		new = (sht->array)[i];
 		while (new)
 		{
 			next = new->next;
@@ -151,6 +147,6 @@ void hash_table_delete(hash_table_t *ht)
 		}
 		i++;
 	}
-	free(ht->array);
-	free(ht);
+	free(sht->array);
+	free(sht);
 }
