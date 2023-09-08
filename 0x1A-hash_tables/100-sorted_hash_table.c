@@ -36,7 +36,7 @@ int shash_table_set(shash_table_t *sht, const char *key, const char *value)
 {
 	shash_node_t *prev = NULL, *current = sht->shead, *new;
 	char *copy = strdup(value);
-	unsigned long n = key_index((const unsigned char *)key, sht->size);
+	unsigned long int n = key_index((const unsigned char *)key, sht->size);
 
 	if (!sht || !key || !*key || !value || !copy)
 		return (0);
