@@ -16,7 +16,7 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	n = key_index((const unsigned char *)key, ht->size);
 
 	new = (ht->array)[n];
-	while (new && strcmp(node->key, key) != 0)
+	while (new && strcmp(new->key, key) != 0)
 		new = new->next;
 	if (!new)
 		return (NULL);
