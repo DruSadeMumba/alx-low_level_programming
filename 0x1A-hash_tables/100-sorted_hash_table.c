@@ -36,42 +36,42 @@ int shash_table_set(shash_table_t *sht, const char *key, const char *value)
 {
 	shash_node_t *prev = NULL, *current = sht->shead, *new;
 	char *copy = strdup(value);
-	unsigned long n = key_index((const unsigned char *)key, sht->size);
+    unsigned long n = key_index((const unsigned char *)key, sht->size);
 
-	if (!sht || !key || !*key || !value || !copy)
-		return (0);
-	while (current && strcmp(current->key, key) < 0)
+    if (!sht || !key || !*key || !value || !copy)
+        return (0);
+    while (current && strcmp(current->key, key) < 0) 
 	{
-		prev = current;
-		current = current->next;
-	}
-	if (current && strcmp(current->key, key) == 0)
+        prev = current;
+        current = current->snext;
+    }
+    if (current && strcmp(current->key, key) == 0) 
 	{
-		free(current->value);
-		current->value = copy;
-	} else
-	{
-		new = malloc(sizeof(shash_node_t));
-		if (!new)
-		{
-			free(copy);
-			return (0);
-		}
-		new->key = strdup(key);
-		if (!new->key)
-		{
-			free(copy);
-			free(new);
-			return (0);
-		}
-		new->value = copy;
-		new->next = sht->array[n];
-		sht->array[n] = new;
-		new->sprev = prev;
-		new->snext = current;
-		prev ? (prev->snext = new) : (sht->shead = new);
-		current ? (current->sprev = new) : (sht->stail = new);
-	}
+        free(current->value);
+        current->value = copy;
+    } else 
+    {
+        new = malloc(sizeof(shash_node_t));
+        if (!new) 
+        {
+            free(copy);
+            return (0);
+        }
+        new->key = strdup(key);
+        if (!new->key) 
+        {
+            free(copy);
+            free(new);
+            return (0);
+        }
+        new->value = copy;
+        new->next = sht->array[n];
+        sht->array[n] = new;
+        new->sprev = prev;
+        new->snext = current;
+        prev ? (prev->snext = new) : (sht->shead = new);
+        current ? (current->sprev = new) : (sht->stail = new);
+    }
 	return (1);
 }
 
