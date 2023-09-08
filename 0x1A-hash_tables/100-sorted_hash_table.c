@@ -43,7 +43,7 @@ int shash_table_set(shash_table_t *sht, const char *key, const char *value)
 	while (current && strcmp(current->key, key) < 0)
 	{
 		prev = current;
-		current = current->next;
+		current = current->snext;
 	}
 	if (current && strcmp(current->key, key) == 0)
 	{
