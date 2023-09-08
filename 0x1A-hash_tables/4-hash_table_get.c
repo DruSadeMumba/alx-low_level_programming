@@ -11,17 +11,15 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	unsigned long n;
 	hash_node_t *new;
 
-	if (!ht || !key || *key == '\0')
+	if (!ht || !key)
 		return (NULL);
 	n = key_index((const unsigned char *)key, ht->size);
 
-	if (n >= ht->size)
-		return (NULL);
 	new = (ht->array)[n];
+	while (new && strcmp(node->key, key) != 0)
+		new = new->next;
 	if (!new)
 		return (NULL);
 	else
 		return (new->value);
-	while (new && strcmp(new->key, key) != 0)
-		new = new->next;
 }
