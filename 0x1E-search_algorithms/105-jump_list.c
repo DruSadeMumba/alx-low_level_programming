@@ -1,7 +1,7 @@
 #include "search_algos.h"
 
 /**
- * next_list - searches for a value in a sorted array of ints
+ * jump_list - searches for a value in a sorted array of ints
  * @list: array of ints
  * @size: size of list
  * @value: int to search
@@ -14,7 +14,6 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 	if (!list || size == 0)
 		return (NULL);
-
 
 	for (current = next = list; next->index + 1 < size && next->n < value;)
 	{
