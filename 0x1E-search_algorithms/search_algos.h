@@ -1,5 +1,5 @@
-#ifdef SEARCH_ALGOS_H_
-#define SEARCH_ALGOS_H
+#ifndef SEARCH_ALGOS
+#define SEARCH_ALGOS
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,7 +35,7 @@ typedef struct skiplist_s
 	int n;
 	size_t index;
 	struct skiplist_s *next;
-	struct skiplist_s *express;
+	struct skiplist_s *express;	
 } skiplist_t;
 
 int linear_search(int *array, size_t size, int value);
